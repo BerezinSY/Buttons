@@ -135,6 +135,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="buttonSubContainer" destination="KfM-hT-H3O" id="aMV-NH-f3N"/>
+                <outletCollection property="labels" destination="HeJ-gz-az6" collectionClass="NSMutableArray" id="kUH-zO-V1g"/>
             </connections>
             <point key="canvasLocation" x="244.6875" y="-179.0492957746479"/>
         </view>
