@@ -9,9 +9,21 @@ import UIKit
 
 public final class ButtonView: UIView {
     
-    @IBOutlet private var labels: [UILabel]!
+    @IBOutlet private var labels: [UILabel]! {
+        didSet {
+            labels.forEach({ $0.text = "" })
+        }
+    }
     @IBOutlet private var templateContainer: UIView!
     @IBOutlet private var buttonSubContainer: UIView!
+    
+    public var tapped: (() -> Void)?
+    public var titles: [String] = [] {
+        didSet {
+            zip(labels, titles).forEach({ $0.0.text = $0.1 })
+        }
+    }
+    public var switched: ((Bool) -> Void)?
     
     public static var base: ButtonView? {
         Bundle.module.loadNibNamed("BaseButtonView", owner: self)?.first as? ButtonView
@@ -22,11 +34,11 @@ public final class ButtonView: UIView {
     }
     
     @IBAction private func tapped(_ sender: UIButton) {
-        
+        tapped?()
     }
     
     @IBAction private func switched(_ sender: UISwitch) {
-        
+        switched?(sender.isOn)
     }
     
     @IBAction private func touchDown(_ sender: UIButton) {
